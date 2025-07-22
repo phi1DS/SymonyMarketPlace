@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Account Page{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">My Account</h1>
+
+    <div class="alert alert-info">
+        Connected user: <strong>{{ userIdentifier }}</strong>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">My Products</h4>
+        <a href="{{ path('app_product_create') }}" class="btn btn-success">Add Product</a>
+    </div>
+
+    {% if products is not empty %}
+        <div class="row g-4">
+            {% for product in products %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">
+                                <strong>Price:</strong> {{ product.price }} €<br>
+                                <strong>Your Email:</strong> {{ product.user.email }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning mt-3">
+            You haven't added any products yet.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

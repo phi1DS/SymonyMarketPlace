@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Available Products{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">List of Products</h1>
+
+    {% if products is not empty %}
+        <div class="row g-4">
+            {% for product in products %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">
+                                <strong>Price:</strong> {{ product.price }} €<br>
+                                <strong>Seller:</strong> {{ product.user.email }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center">
+            No products found.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
